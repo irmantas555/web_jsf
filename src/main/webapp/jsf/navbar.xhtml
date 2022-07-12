@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<div class="card" style="width: 98vw">
+    <h:form id="navbar">
+        <p:menubar>
+        <p:submenu label="Persons" icon="pi pi-fw pi-user">
+            <p:menuitem value="Cards" actionListener="#{personSelectBean.doOnInit()}"/>
+            <p:menuitem value="Index" url="/web_test-1.0-SNAPSHOT/jsf/index.xhtml"/>
+            <p:submenu label="Affinities"/>
+            <p:submenu label="Total strangers"/>
+        </p:submenu>
+        <p:submenu label="Functions" icon="pi pi-fw pi-pencil">
+            <p:submenu label="Jobs"/>
+            <p:submenu label="Hobbies"/>
+            <p:submenu label="Identifications"/>
+        </p:submenu>
+        <f:facet name="options">
+            <div class="ui-input-icon-left p-mr-2">
+                <i class="pi pi-fw pi-search"/>
+                <p:inputText placeholder="Search"/>
+            </div>
+            <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+        </f:facet>
+    </p:menubar></h:form>
+</div>
+</html>

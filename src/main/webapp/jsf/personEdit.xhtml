@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="index.xhtml">
+    <ui:define name="content">
+        <h:form styleClass="flex-right">
+            <div class="d-flex flex-column align-items-end">
+                <div class="row">
+                    <p:outputLabel styleClass="col" id="name-label" value="Name: "/>
+                    <p:inputText styleClass="col" id="p-name" value="#{personEdit.person.name}"/>
+                </div>
+                <div class="row">
+                    <p:outputLabel styleClass="col" id="age-label" value="Age: "/>
+                    <p:inputText styleClass="col" id="p-age" value="#{personEdit.person.age}"/>
+                </div>
+            </div>
+            <h:commandButton value="Submit" type="submit" action="#{personEdit.persist}"></h:commandButton>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

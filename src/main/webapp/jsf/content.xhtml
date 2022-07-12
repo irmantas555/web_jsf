@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <div class="center"><p:outputLabel style="font-size: 50px"
+                                       value="Hello from text"></p:outputLabel></div>
+    <div class="center-flex"><h3 class="my-label">Hello from text</h3></div>
+    <br></br>
+    <h:form id="person-form">
+        <div class="center d-flex flex-row justify-content-center">
+            <div class="px-1"><p class="mx-1 input-label">Name: </p><p:inputText value="#{testBean.name}"></p:inputText>
+            </div>
+            <div class="px-1"><p class="mx-1 input-label">Age:</p> <p:inputNumber id="input" value="#{testBean.age}"
+                                                                                  decimalPlaces="0"></p:inputNumber>
+            </div>
+            <p:commandButton value="Įvęsti" ajax="true" resetValues="true" update="@form cardsForm tableForm"
+                             action="#{testBean.fillString}"></p:commandButton>
+        </div>
+        <p:outputLabel styleClass="my-label" value="#{testBean.helloToString}"></p:outputLabel>
+        <h:message id="ent-msg" for="person-form"></h:message>
+    </h:form>
+</h:body>
+</html>

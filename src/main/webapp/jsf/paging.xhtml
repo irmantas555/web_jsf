@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:form id="pageSelect" styleClass="center-flex">
+    <p:selectOneButton id="page-value" value="#{pagingBean.newPage}" unselectable="false">
+        <f:selectItems id="marking" value="#{pagingBean.pagesList}" var="s" itemLabel="#{s.mark}"
+                       itemValue="#{s.number}" noSelectionValue="#{pagingBean.pagesList}">
+        </f:selectItems>
+        <f:ajax listener="#{personSelectBean.intitPaging}" render=":cardsForm @form" event="change" execute="page-value"
+                onevent="goTopOnCompete"></f:ajax>
+    </p:selectOneButton>
+        <p:button value="Page size:" styleClass="ui-button-flat ui-button-secondary" disabled="true"/>
+        <p:selectOneMenu id="page-size" value="#{pagingBean.newSize}">
+            <f:selectItems id="size" value="#{pagingBean.pageSizes}"/>
+            <f:ajax listener="#{personSelectBean.intitPaging}" render=":cardsForm @form" event="change"></f:ajax>
+        </p:selectOneMenu>
+</h:form>
+<script type="text/javascript">
+    function goTopOnCompete(data) {
+        data.status = "success" ? window.scrollTo(0, 0)     : null;
+    }
+</script>
+</html>

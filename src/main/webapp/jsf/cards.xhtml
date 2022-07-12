@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<ui:composition template="index.xhtml">
+    <ui:define name="content">
+        <h:form id="cardsForm" class="multi-card" >
+            <ui:repeat value="#{personSelectBean.people}" var="person" varStatus="#{myVarStatus}">
+                <p:card styleClass="card">
+                    <f:facet name="header">
+                        <h:graphicImage value="../resources/images/tts1.jpg"/>
+                    </f:facet>
+                    <f:facet name="title">
+                        <p:outputLabel value="#{person.name}"></p:outputLabel>
+                    </f:facet>
+                    <f:facet name="subtitle">
+                        <p:outputLabel value="#{person.name.concat(' ').concat(person.age.toString())}"></p:outputLabel>
+                    </f:facet>
+                    <h:inputHidden value="#{person.id}"></h:inputHidden>
+
+                    <p:outputLabel value="#{person.name.concat(' ').concat(personSelectBean.getLorem10)}"></p:outputLabel>
+                    <p:commandButton id="save" icon="pi pi-check" styleClass="ui-button-secondary"
+                                     value="Save" actionListener="#{personEdit.attributeListener}"
+                                     ajax="true" update="@none">
+                        <f:attribute name="p-id" value="#{person.id}"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary"
+                                     style="margin-left: .5em">
+                        <f:ajax event="click" listener="#{personSelectBean.throwError}" render="ent-msg"/>
+                    </p:commandButton>
+                    <p:commandButton id="d-button"
+                                     icon="pi pi-times"
+                                     value="Delete"
+                                     styleClass="ui-button-secondary"
+                                     actionListener="#{personSelectBean.deleteCard}"
+                                     ajax="true"
+                                     process="d-button"
+                                     update="@form :pageSelect"
+                                     style="margin-left: .5em">
+                        <f:attribute name="p-id" value="#{person.id}"/>
+                    </p:commandButton>
+                </p:card>
+            </ui:repeat>
+        </h:form>
+        <h:form id="ent-msg">
+            <p:messages id="err-msg" showDetail="true"></p:messages>
+        </h:form>
+        <script type="text/javascript">
+            function escapeError() {
+                const elementsByClassName = document.getElementById('ent-msg:err-msg');
+                if (elementsByClassName) elementsByClassName.classList.add('d-none');
+            }
+            document.body.addEventListener('click', escapeError, true)
+        </script>
+        <ui:include src="paging.xhtml"/>
+    </ui:define>
+</ui:composition>
+</html>
